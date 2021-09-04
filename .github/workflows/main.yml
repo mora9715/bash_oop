@@ -6,9 +6,13 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+
       - name: Init Bats submodules
         run: |
           git submodule init
           git submodule update
+
+      - name: Run tests
+        run: ./test/bats/bin/bats ./test/test.bats
 
 
