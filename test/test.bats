@@ -8,6 +8,7 @@ diag() {
 
 setup () {
   load test_helper/bats-assert/load
+  load test_helper/bats-support/load
 }
 
 @test "Test class names validation" {
@@ -19,7 +20,7 @@ setup () {
   done
 
   # Happy flow
-  for name in 'IsValid' 'is_valid' '__is_valid' 'is-valid'; do
+  for name in 'IsValid' 'is_valid' '__is_valid'; do
     run setup_class "${name}"
     assert_success
   done
