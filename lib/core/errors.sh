@@ -3,7 +3,7 @@
 
 declare -A ERRORS
 
-ERRORS[invalid_object_name]='InvalidObjectName: name "${1}\" is not valid for an object'
+ERRORS[invalid_object_name]='InvalidObjectName: name \"${1}\" is not valid for an object'
 ERRORS[invalid_attribute_name]='InvalidAttributeName: name \"${1}\" is not valid for an attribute'
 ERRORS[invalid_method_name]='InvalidMethodName: name \"${1}\" is not valid for a method'
 ERRORS[attribute_error]='AttributeError: object \"${1}\" has no attribute \"${2}\"'
