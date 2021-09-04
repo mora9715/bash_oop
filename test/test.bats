@@ -19,7 +19,7 @@ setup () {
   done
 
   # Happy flow
-  for name in 'IsValid' 'is_valid' '__is_valid'; do
+  for name in 'IsValid' 'is_valid' '__is_valid' 'is-valid'; do
     run setup_class "${name}"
     assert_success
   done
