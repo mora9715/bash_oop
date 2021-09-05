@@ -27,4 +27,4 @@ jobs:
           git submodule update
 
       - name: Run tests
-        run: ./test/bats/bin/bats ./test/test.bats
+        run: ./test/bats/bin/bats ./test/test_cases/*.bats
