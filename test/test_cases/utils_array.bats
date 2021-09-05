@@ -54,4 +54,3 @@ diag() {
   assert_line value1
   assert_line value2
 }
-
