@@ -21,7 +21,9 @@ diag() {
   run test_get_array_keys
 
   assert_success
-  assert_line "z y x"
+  assert_line --partial "x"
+  assert_line --partial "y"
+  assert_line --partial "z"
 }
 
 @test "utils/array: get array value" {
