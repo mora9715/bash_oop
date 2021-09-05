@@ -27,8 +27,5 @@ jobs:
           git submodule update
 
       - name: Run tests
-        run: |
-          for file in $(ls ./test/test_cases); do
-            ./test/bats/bin/bats "./test/test_cases/${file}"
-          done
+        run: ./test/bats/bin/bats ./test/test_cases/*.bats
 
