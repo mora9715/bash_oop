@@ -1,4 +1,6 @@
 # Bash OOP
+![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/mora9715/bash_oop?include_prereleases&label=Latest%20Version) ![example workflow](https://github.com/mora9715/bash_oop/actions/workflows/main.yml/badge.svg)
+
 The library adds an *object* abstraction, that has many features modern OOP-oriented have out-of-the-box. 
 
 ### Features

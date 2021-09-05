@@ -1,4 +1,4 @@
-name: Run Core library tests
+name: Tests
 on: [push]
 jobs:
   Test:
