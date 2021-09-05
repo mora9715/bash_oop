@@ -58,6 +58,22 @@ function _set_array_value() {
 }
 
 #######################################
+# Unset an array key
+# Arguments:
+#   array name. string
+#   array key. string
+#######################################
+function _unset_array_key() {
+  local array_name
+  local array_key
+
+  array_name="${1}"; shift
+  array_key="${1}"; shift
+
+  unset "${array_name}[${array_key}]"
+}
+
+#######################################
 # Create a copy of an array
 # Arguments:
 #   source array name. string

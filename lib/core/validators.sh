@@ -147,7 +147,17 @@ function _assert_is_class() {
   object_type="$(_get_type "${1}")"
 
   if ! _value_equals "${object_type}" "${CLASS_TYPE_NAME}"; then
-    _throw_error "${ERRORS[syntax_error]}"
+    _throw_error "${ERRORS[invalid_object_type]}" "${object_type}"
+  fi
+}
+
+function _assert_is_instance() {
+  local object_type
+
+  object_type="$(_get_type "${1}")"
+
+  if ! _value_equals "${object_type}" "${INSTANCE_TYPE_NAME}"; then
+    _throw_error "${ERRORS[invalid_object_type]}" "${object_type}"
   fi
 }
 

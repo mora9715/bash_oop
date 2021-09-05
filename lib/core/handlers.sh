@@ -69,11 +69,10 @@ function _handle_attribute() {
 
   _assert_attribute_name_not_empty "${attribute_name}"
   _assert_attribute_name_valid "${attribute_name}"
+  _assert_can_call_attribute "${object_name}" "${attribute_name}"
 
   if _value_is_empty "${1}"; then
     # GET attribute. object : attribute
-    _assert_can_call_attribute "${object_name}" "${attribute_name}"
-
     attribute_owner="$(_resolve_attribute "${object_name}" "${attribute_name}")"
     _assert_attribute_owner_found "${object_name}" "${attribute_name}" "${attribute_owner}"
 
@@ -145,4 +144,5 @@ function _handle_instance_creation() {
   _assert_object_name_valid "${instance_name}"
 
   _declare_instance "${object_name}" "${instance_name}"
+  _call_init_method "${object_name}" "${@}"
 }

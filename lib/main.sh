@@ -6,4 +6,4 @@ LIB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source "${LIB_DIR}/core/main.sh"
 
 # Base classes such as Object
-source "${LIB_DIR}/classes/main.sh"
+source "${LIB_DIR}/classes/object.sh"

@@ -8,6 +8,7 @@ diag() {
 
 setup () {
   load test_helper/bats-assert/load
+  load test_helper/bats-support/load
 }
 
 @test "Test class names validation" {

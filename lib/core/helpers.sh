@@ -104,6 +104,23 @@ function _get_method() {
 }
 
 #######################################
+# Get names of all declared object methods
+# Arguments:
+#   object name
+# Outputs:
+#   method names
+#######################################
+function _get_all_method_names() {
+  local object_name
+  local internal_methods_name
+
+  object_name="${1}"; shift
+  internal_methods_name="$(_get_internal_methods_name "${object_name}")"
+
+  _get_array_keys "${internal_methods_name}"
+}
+
+#######################################
 # Get object type
 # Arguments:
 #   object name
@@ -254,6 +271,24 @@ function _declare_default_methods() {
 }
 
 #######################################
+# Destroy default object containers (attributes/methods)
+# Arguments:
+#   object name
+#######################################
+function _destroy_default_containers() {
+  local object_name
+  local internal_methods_name
+  local internal_attributes_name
+
+  object_name="${1}"; shift
+  internal_methods_name="$(_get_internal_methods_name "${object_name}")"
+  internal_attributes_name="$(_get_internal_attributes_name "${object_name}")"
+
+  unset "${internal_methods_name}"
+  unset "${internal_attributes_name}"
+}
+
+#######################################
 # Declare a function that serves as an
 #   entrypoint for an object
 # Arguments:
@@ -269,6 +304,19 @@ function _declare_entrypoint() {
     _handle_input ${object_name} \"\${@}\"
   }
   "
+}
+
+#######################################
+# Destroy an object entrypoint function
+# Arguments:
+#   object name
+#######################################
+function _destroy_entrypoint() {
+  local object_name
+
+  object_name="${1}"; shift
+
+  unset -f "${object_name}" &>/dev/null
 }
 
 #######################################
@@ -316,6 +364,59 @@ function _call_method() {
 }
 
 #######################################
+# Execute magic init method
+# Arguments:
+#   object name
+#   *method args
+#######################################
+function _call_init_method() {
+  local object_name
+  local method_owner
+
+  object_name="${1}"; shift
+  method_owner="$(_resolve_method "${object_name}" "${INIT_METHOD_NAME}")"
+
+  _call_method "${method_owner}" "${INIT_METHOD_NAME}" "${@}"
+}
+
+#######################################
+# Execute magic destroy method
+# Arguments:
+#   object name
+#   *method args
+#######################################
+function _call_destroy_method() {
+  local object_name
+  local method_owner
+
+  object_name="${1}"; shift
+  method_owner="$(_resolve_method "${object_name}" "${DESTROY_METHOD_NAME}")"
+
+  _call_method "${method_owner}" "${DESTROY_METHOD_NAME}" "${@}"
+}
+
+#######################################
+# Unset a declared object method
+# Arguments:
+#   object name
+#   method name
+#######################################
+function _destroy_method() {
+  local object_name
+  local method_name
+  local internal_method_name
+  local internal_methods_name
+
+  object_name="${1}"; shift
+  method_name="${1}"; shift
+  internal_method_name="$(_get_internal_method_name "${object_name}" "${method_name}")"
+  internal_methods_name="$(_get_internal_methods_name "${object_name}")"
+
+  _unset_array_key "${internal_methods_name}" "${method_name}"
+  unset -f "${internal_method_name}" &>/dev/null
+}
+
+#######################################
 # Create a new object of type `instance`
 #   copying all attributes and methods of `class`
 # Arguments:
@@ -339,6 +440,25 @@ function _declare_instance() {
   _declare_default_attributes "${instance_name}" "${INSTANCE_TYPE_NAME}" "${parent_name}"
   _declare_default_methods "${instance_name}"
   _declare_entrypoint "${instance_name}"
+}
+
+#######################################
+# Destroy an object of type `instance`
+#   along with all its declared methods and attributes
+# Arguments:
+#   instance name
+#######################################
+function _destroy_instance() {
+  local object_name
+
+  object_name="${1}"; shift
+
+  for method in $(_get_all_method_names "${object_name}"); do
+    _destroy_method "${object_name}" "${method}"
+  done
+
+  _destroy_entrypoint "${object_name}"
+  _destroy_default_containers "${object_name}"
 }
 
 #######################################
