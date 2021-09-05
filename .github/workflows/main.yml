@@ -19,7 +19,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Init Bats submodules
-        uses: "docker://bash:${{ matrix.bash_version }}"
         run: |
           pwd
           git submodule init
