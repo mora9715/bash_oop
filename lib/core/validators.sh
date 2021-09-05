@@ -31,10 +31,6 @@ function _args_num_equal() {
   [[ "${#@}" == "${expected_number}" ]]
 }
 
-function _stdin_empty() {
-  ! read -t 0
-}
-
 function _name_is_protected() {
   _value_matches_regex "${1}" "${PROTECTED_NAME_REGEX}"
 }
