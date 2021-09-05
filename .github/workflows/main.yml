@@ -28,5 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
-          ./test/bats/bin/bats ./test/test_cases/*.bats
+          for file in $(ls ./test/test_cases); do
+            ./test/bats/bin/bats "./test/test_cases/${file}"
+          done
 
