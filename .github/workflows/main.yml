@@ -2,10 +2,24 @@ name: Run Core library tests
 on: [push]
 jobs:
   Test:
+    name: "Run tests for bash v${{ matrix.bash_version }}"
+    container:
+      image: "bash:${{ matrix.bash_version }}"
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        bash_version:
+          - "4.3"
+          - "4.4"
+          - "5.0"
+          - "5.1"
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+      - name: Install git
+        run: apk add git
+
+      - name: Checkout repository code
+        run: |
+          git clone --single-branch --branch "${GITHUB_REF##*heads/}" https://github.com/mora9715/bash_oop.git .
 
       - name: Init Bats submodules
         run: |
@@ -14,5 +28,3 @@ jobs:
 
       - name: Run tests
         run: ./test/bats/bin/bats ./test/test.bats
-
-
