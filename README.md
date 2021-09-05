@@ -3,6 +3,8 @@
 
 The library adds an *object* abstraction, that has many features modern OOP-oriented have out-of-the-box. 
 
+---
+
 ### Features
 All objects can be of type **class** or type **instance**. An instance of a class gets all methods and attributes of the class. They are independent of the class and can be changed, not affecting the parent class.
 
@@ -12,8 +14,12 @@ All subclasses inherit from base class [Object](./lib/classes/object.sh).
 *Encapsulation* is implemented strictly (as in Golang), in contrast to Python or Ruby.
 It is not possible to directly access a method or an attribute marked as private.
 
+---
+
 ### Requirements
 The library requires __bash>=4.3__.
+
+---
 
 ### How to use
 Clone the repo or copy the [lib](./lib) directory contents and import [lib/main.sh](lib/main.sh) to install the library.
@@ -28,6 +34,8 @@ source bash_oop/lib/main.sh
 Once the library is set up, make sure to check the [Library API Reference](#api-reference).
 
 For an even deeper understanding of what you can and cannot do with the library, take a look at the [test cases](./test/).
+
+---
 
 ### API Reference
 The section documents public library API exposed to end-users.
