@@ -22,9 +22,12 @@ function class() {
   parent_name="${1}"; shift
 
   if _value_is_empty "${parent_name}"; then
-    parent_name="${BASE_CLASS_NAME}"
+    if ! _value_equals "${object_name}" "${BASE_CLASS_NAME}"; then
+      parent_name="${BASE_CLASS_NAME}"
+    fi
   else
     _assert_object_declared "${parent_name}"
+    _assert_is_class "${parent_name}"
   fi
 
   _assert_object_name_valid "${object_name}"
@@ -33,4 +36,16 @@ function class() {
   _declare_default_attributes "${object_name}" "${CLASS_TYPE_NAME}" "${parent_name}"
   _declare_default_methods "${object_name}"
   _declare_entrypoint "${object_name}"
+}
+
+function destroy() {
+  local object_name
+
+  object_name="${1}"; shift
+
+  _assert_object_declared "${object_name}"
+  _assert_is_instance "${object_name}"
+
+  _call_destroy_method "${object_name}" "${@}"
+  _destroy_instance "${object_name}"
 }
