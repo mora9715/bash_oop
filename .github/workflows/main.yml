@@ -2,6 +2,10 @@ name: Run Core library tests
 on: [push]
 jobs:
   Test:
+    container:
+      image: "bash:${{ matrix.bash_version }}"
+#       volumes:
+#         - my_docker_volume:/volume_mount
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,11 +21,10 @@ jobs:
       - name: Init Bats submodules
         uses: "docker://bash:${{ matrix.bash_version }}"
         run: |
+          pwd
           git submodule init
           git submodule update
 
       - name: Run tests
         uses: "docker://bash:${{ matrix.bash_version }}"
         run: ./test/bats/bin/bats ./test/test.bats
-
-
