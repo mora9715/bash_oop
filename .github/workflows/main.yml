@@ -11,9 +11,9 @@ jobs:
       matrix:
         bash_version:
           - "4.3"
-          - "4.4"
-          - "5.0"
-          - "5.1"
+#           - "4.4"
+#           - "5.0"
+#           - "5.1"
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -24,6 +24,7 @@ jobs:
       - name: Init Bats submodules
         run: |
           pwd
+          ls -lah ./
           git submodule init
           git submodule update
 
