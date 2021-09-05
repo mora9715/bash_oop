@@ -20,16 +20,16 @@ jobs:
 
       - name: Checkout repository code
         run: |
-          git clone --single-branch --branch "${GITHUB_REF##*heads/}" https://github.com/mora9715/bash_oop.git
+          git clone --single-branch --branch "${GITHUB_REF##*heads/}" https://github.com/mora9715/bash_oop.git .
           pwd
           ls -lah
 
-#      - name: Init Bats submodules
-#        run: |
-#          pwd
-#          ls -lah ./
-#          git submodule init
-#          git submodule update
-#
+      - name: Init Bats submodules
+        run: |
+          pwd
+          ls -lah ./
+          git submodule init
+          git submodule update
+
 #      - name: Run tests
 #        run: ./test/bats/bin/bats ./test/test.bats
