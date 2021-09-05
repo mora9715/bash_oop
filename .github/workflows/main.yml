@@ -25,5 +25,4 @@ jobs:
           git submodule update
 
       - name: Run tests
-        uses: "docker://bash:${{ matrix.bash_version }}"
         run: ./test/bats/bin/bats ./test/test.bats
