@@ -3,16 +3,25 @@ on: [push]
 jobs:
   Test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        bash_version:
+          - "4.3"
+          - "4.4"
+          - "5.0"
+          - "5.1"
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
 
       - name: Init Bats submodules
+        uses: "docker://bash:${{ matrix.bash_version }}"
         run: |
           git submodule init
           git submodule update
 
       - name: Run tests
+        uses: "docker://bash:${{ matrix.bash_version }}"
         run: ./test/bats/bin/bats ./test/test.bats
 
 
