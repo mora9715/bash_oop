@@ -12,7 +12,24 @@ All subclasses inherit from base class [Object](./lib/classes/object.sh).
 *Encapsulation* is implemented strictly (as in Golang), in contrast to Python or Ruby.
 It is not possible to directly access a method or an attribute marked as private.
 
-### Library API
+### Requirements
+The library requires __bash>=4.3__.
+
+### How to use
+Clone the repo or copy the [lib](./lib) directory contents and import [lib/main.sh](lib/main.sh) to install the library.
+```bash
+# Clone the repo:
+git clone https://github.com/mora9715/bash_oop
+
+# Import the main library entrypoint in your scripts:
+source bash_oop/lib/main.sh
+```
+
+Once the library is set up, make sure to check the [Library API Reference](#api-reference).
+
+For an even deeper understanding of what you can and cannot do with the library, take a look at the [test cases](./test/).
+
+### API Reference
 The section documents public library API exposed to end-users.
 
 #### Class declaration
