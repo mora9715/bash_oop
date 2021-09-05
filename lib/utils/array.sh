@@ -3,11 +3,23 @@
 # Set of functions to ease operations on
 #   bash associated arrays.
 
+#######################################
+# Check if an array has a key
+# Arguments:
+#   array name
+#   array key
+# Returns:
+#   0 - array has key
+#   1 - array does not have key
+#######################################
+function _array_has_key() {
+  [[ -v "${1}[${2}]" ]]
+}
 
 #######################################
 # Get all array keys
 # Arguments:
-#   array name. string
+#   array name
 # Outputs:
 #   array keys
 #######################################
@@ -22,8 +34,8 @@ function _get_array_keys() {
 #######################################
 # Get an array value by key
 # Arguments:
-#   array name. string
-#   array key. string
+#   array name
+#   array key
 # Outputs:
 #   requested array value
 #######################################
@@ -40,9 +52,9 @@ function _get_array_value() {
 #######################################
 # Set an array value by key
 # Arguments:
-#   array name. string
-#   array key. string
-#   array value. string
+#   array name
+#   array key
+#   array value
 #######################################
 function _set_array_value() {
   local array_name
@@ -76,8 +88,8 @@ function _unset_array_key() {
 #######################################
 # Create a copy of an array
 # Arguments:
-#   source array name. string
-#   destination array key. string
+#   source array name
+#   destination array key
 #######################################
 function _copy_array() {
   local src_array_name

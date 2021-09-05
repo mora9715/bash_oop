@@ -110,11 +110,9 @@ function _handle_method() {
   _assert_method_name_not_empty "${method_name}"
   _assert_method_name_valid "${method_name}"
 
-  if ! _stdin_empty ; then
-    # Method declaration
-    method_body="$(cat)"
-    _set_method "${object_name}" "${method_name}" "${method_body}"
-  else
+  method_body="$(_read_from_stdin)"
+
+  if _value_is_empty "${method_body}" ; then
     # Method execution
     _assert_can_call_method "${object_name}" "${method_name}"
 
@@ -122,6 +120,9 @@ function _handle_method() {
     _assert_method_owner_found "${object_name}" "${method_name}" "${method_owner}"
 
     _call_method "${method_owner}" "${method_name}" "${@}"
+  else
+    # Method declaration
+    _set_method "${object_name}" "${method_name}" "${method_body}"
   fi
 }
 

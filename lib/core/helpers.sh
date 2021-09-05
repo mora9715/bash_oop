@@ -1,5 +1,15 @@
 #! /usr/bin/env bash
 
+
+#######################################
+# Get contents of STDIN if there is something
+# Outputs:
+#   STDIN contents
+#######################################
+function _read_from_stdin() {
+  less <&0 2>/dev/null
+}
+
 #######################################
 # Get name of array containing object attributes
 #   as in output of `declare`
