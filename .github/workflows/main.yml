@@ -15,18 +15,19 @@ jobs:
 #           - "5.0"
 #           - "5.1"
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
       - name: Install git
         run: apk add git
 
-      - name: Init Bats submodules
-        run: |
-          pwd
-          ls -lah ./
-          git submodule init
-          git submodule update
+      - name: Checkout repository code
+        run: env
+#        run: git clone --single-branch --branch https://github.com/mora9715/bash_oop.git
 
-      - name: Run tests
-        run: ./test/bats/bin/bats ./test/test.bats
+#      - name: Init Bats submodules
+#        run: |
+#          pwd
+#          ls -lah ./
+#          git submodule init
+#          git submodule update
+#
+#      - name: Run tests
+#        run: ./test/bats/bin/bats ./test/test.bats
