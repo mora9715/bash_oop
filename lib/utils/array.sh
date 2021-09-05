@@ -60,8 +60,8 @@ function _set_array_value() {
 #######################################
 # Unset an array key
 # Arguments:
-#   array name. string
-#   array key. string
+#   array name
+#   array key
 #######################################
 function _unset_array_key() {
   local array_name
