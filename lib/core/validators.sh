@@ -24,10 +24,6 @@ function _function_is_declared() {
   declare -F | cut -d" " -f3 | grep -q "^${1}$"
 }
 
-function _array_has_key() {
-  [[ -v "${1}[${2}]" ]]
-}
-
 function _args_num_equal() {
   local expected_number
 
