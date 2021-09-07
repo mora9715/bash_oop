@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -efo pipefail
+
 LIB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Core library with functionality related to class management
