@@ -406,6 +406,22 @@ function _call_destroy_method() {
 }
 
 #######################################
+# Execute magic raise method
+# Arguments:
+#   exception name
+#   *method args
+#######################################
+function _call_raise_method() {
+  local exception_name
+  local method_owner
+
+  exception_name="${1}"; shift
+  method_owner="$(_resolve_method "${exception_name}" "${RAISE_METHOD_NAME}")"
+
+  _call_method "${method_owner}" "${RAISE_METHOD_NAME}" "${@}"
+}
+
+#######################################
 # Unset a declared object method
 # Arguments:
 #   object name

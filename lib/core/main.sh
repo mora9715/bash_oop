@@ -38,6 +38,11 @@ function class() {
   _declare_entrypoint "${object_name}"
 }
 
+#######################################
+# Call __destroy__ on instance and remove it
+# Arguments:
+#   object name. string
+#######################################
 function destroy() {
   local object_name
 
@@ -48,4 +53,19 @@ function destroy() {
 
   _call_destroy_method "${object_name}" "${@}"
   _destroy_instance "${object_name}"
+}
+
+#######################################
+# Call __raise__ method on a child of Exception
+# Arguments:
+#   exception name. string
+#   *args
+#######################################
+function raise() {
+  local exception_name
+
+  exception_name="${1}"; shift
+
+  _assert_object_declared "${exception_name}"
+  _call_raise_method "${exception_name}" "${@}"
 }

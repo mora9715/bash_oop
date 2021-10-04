@@ -128,6 +128,24 @@ SalaryEmployee . get_position << 'EOF'
 EOF
 ```
 
+#### Exceptions
+A special `Exception` class is available for your use.
+You can throw exceptions with _custom messages_ / _exit codes_ together with a `raise` function.
+The class accepts `message` and `exit code` as optional parameters:
+```bash
+Exception MyException
+
+raise MyException "custom message" 255
+
+# ==== Produces:
+  ...
+  main @ /path/to/your/script.sh:8
+
+MyException: custom message
+```
+
+You can override or extend how exceptions are raised by customizing the magic `__raise__` method.
+
 #### Special attributes
 
 Each object has a set of special attributes available to a developer.

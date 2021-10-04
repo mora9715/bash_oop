@@ -3,3 +3,4 @@
 CLASSES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 source "${CLASSES_DIR}/object.sh"
+source "${CLASSES_DIR}/exception.sh"
