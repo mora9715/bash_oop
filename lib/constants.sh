@@ -24,3 +24,4 @@ PROTECTED_NAME_REGEX="^_[[:alnum:]]+"
 
 INIT_METHOD_NAME="__init__"
 DESTROY_METHOD_NAME="__destroy__"
+RAISE_METHOD_NAME="__raise__"
