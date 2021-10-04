@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/mora9715/bash_oop/compare/v0.1.2...v0.2.0) (2021-10-04)
+
+
+### Features
+
+* **exceptions:** add support for basic exceptions ([35bfad7](https://www.github.com/mora9715/bash_oop/commit/35bfad76f8644d373d120151cde077ceed5dde35))
+
 ### [0.1.2](https://www.github.com/mora9715/bash_oop/compare/v0.1.1...v0.1.2) (2021-09-05)
 
 
